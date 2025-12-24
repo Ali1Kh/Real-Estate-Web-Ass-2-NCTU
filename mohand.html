@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8 - ترتيب وفلترة العقارات | NCTU Real Estate</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            line-height: 1.6; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* Header */
+        .header { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            padding: 2rem; 
+            border-radius: 20px; 
+            text-align: center; 
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        
+        /* Filters */
+        .filters { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .filter-group { 
+            display: flex; 
+            gap: 1rem; 
+            flex-wrap: wrap; 
+            margin-bottom: 1rem; 
+            align-items: center;
+        }
+        .filter-group label { font-weight: bold; min-width: 100px; }
+        select, input { 
+            padding: 0.8rem; 
+            border: 2px solid #e1e5e9; 
+            border-radius: 10px; 
+            font-size: 1rem; 
+            min-width: 150px;
+        }
+        select:focus, input:focus { outline: none; border-color: #667eea; }
+        button { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            border: none; 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: translateY(-2px); }
+        
+        /* Results */
+        .results-info { 
+            background: white; 
+            padding: 1rem 2rem; 
+            border-radius: 15px; 
+            margin-bottom: 1rem; 
+            font-weight: bold; 
+            color: #333;
+        }
+        
+        /* Properties Grid */
+        .properties { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+            gap: 2rem; 
+        }
+        .property { 
+            background: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .property:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        .property img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover; 
+        }
+        .property-content { padding: 1.5rem; }
+        .property-type { 
+            background: #667eea; 
+            color: white; 
+            padding: 0.3rem 0.8rem; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            display: inline-block;
+        }
+        .property h3 { margin: 0.5rem 0; color: #333; }
+        .property-price { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: #667eea; 
+            margin: 0.5rem 0;
+        }
+        .property-meta { 
+            display: flex; 
+            gap: 1rem; 
+            font-size: 0.9rem; 
+            color: #666; 
+            margin-top: 1rem;
+        }
+        
+        /* Loading */
+        .loading { text-align: center; padding: 3rem; font-size: 1.2rem; color: #666; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .properties { grid-template-columns: 1fr; }
+            .filter-group { flex-direction: column; align-items: stretch; }
+            select, input { min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 عقارات الخليج</h1>
+            <p>اكتشف أفضل العروض في السعودية والكويت</p>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label>🔍 البحث:</label>
+                <input type="text" id="searchInput" placeholder="مدينة، نوع، سعر...">
+            </div>
+            <div class="filter-group">
+                <label>🏢 النوع:</label>
+                <select id="typeFilter">
+                    <option value="">الكل</option>
+                    <option value="شقة">شقة</option>
+                    <option value="فيلا">فيلا</option>
+                    <option value="شاليه">شاليه</option>
+                    <option value="استوديو">استوديو</option>
+                </select>
+                <label>📍 المدينة:</label>
+                <select id="cityFilter">
+                    <option value="">الكل</option>
+                    <option value="الرياض">الرياض</option>
+                    <option value="جدة">جدة</option>
+                    <option value="الدمام">الدمام</option>
+                    <option value="الكويت">الكويت</option>
+                </select>
+                <label>💰 الترتيب:</label>
+                <select id="sortFilter">
+                    <option value="الأحدث">الأحدث</option>
+                    <option value="السعر: صغير إلى كبير">السعر: صغير إلى كبير</option>
+                    <option value="السعر: كبير إلى صغير">السعر: كبير إلى صغير</option>
+                    <option value="المساحة: كبير إلى صغير">المساحة: كبير إلى صغير</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="results-info" id="resultsInfo">
+            عرض <span id="resultsCount">12</span> من <span id="totalCount">12</span> عقار
+        </div>
+
+        <div id="propertiesContainer" class="properties"></div>
+    </div>
+
+    <script>
+        // بيانات العقارات (12 عقار سعودي/خليجي)
+        const properties = [
+            { id: 1, type: 'فيلا', city: 'الرياض', price: 2500000, size: 450, status: 'للبيع', title: 'فيلا فاخرة في حي الملقا', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400' },
+            { id: 2, type: 'شقة', city: 'جدة', price: 850000, size: 180, status: 'للإيجار', title: 'شقة في برج الحمراء', img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400' },
+            { id: 3, type: 'شقة', city: 'الرياض', price: 1200000, size: 220, status: 'للبيع', title: 'شقة في العليا', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400' },
+            { id: 4, type: 'فيلا', city: 'الدمام', price: 1800000, size: 380, status: 'للبيع', title: 'فيلا في الشاطئ', img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400' },
+            { id: 5, type: 'شاليه', city: 'جدة', price: 950000, size: 150, status: 'للإيجار', title: 'شاليه بحر الشرقية', img: 'https://images.unsplash.com/photo-1583608205776-bfd35f1c088d?w=400' },
+            { id: 6, type: 'استوديو', city: 'الكويت', price: 450000, size: 75, status: 'للبيع', title: 'استوديو في السالمية', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400' },
+            { id: 7, type: 'شقة', city: 'الرياض', price: 1600000, size: 280, status: 'للبيع', title: 'شقة في النخيل', img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400' },
+            { id: 8, type: 'فيلا', city: 'جدة', price: 3200000, size: 520, status: 'للبيع', title: 'قصر في حي الشرفية', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400' },
+            { id: 9, type: 'شقة', city: 'الدمام', price: 720000, size: 160, status: 'للإيجار', title: 'شقة في الخزامى', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400' },
+            { id: 10, type: 'شاليه', city: 'الرياض', price: 1100000, size: 200, status: 'للبيع', title: 'شاليه في بدر', img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400' },
+            { id: 11, type: 'استوديو', city: 'جدة', price: 380000, size: 65, status: 'للإيجار', title: 'استوديو في الروضة', img: 'https://images.unsplash.com/photo-1583608205776-bfd35f1c088d?w=400' },
+            { id: 12, type: 'فيلا', city: 'الكويت', price: 2800000, size: 480, status: 'للبيع', title: 'فيلا في حولي', img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400' }
+        ];
+
+        let filteredProperties = [...properties];
+
+        // دالة عرض العقارات
+        function displayProperties(properties) {
+            const container = document.getElementById('propertiesContainer');
+            const resultsCount = document.getElementById('resultsCount');
+            const totalCount = document.getElementById('totalCount');
+            
+            resultsCount.textContent = properties.length;
+            totalCount.textContent = properties.length;
+
+            if (properties.length === 0) {
+                container.innerHTML = '<div class="loading">لا توجد عقارات مطابقة لمعايير البحث 😔</div>';
+                return;
+            }
+
+            container.innerHTML = properties.map(property => `
+                <div class="property">
+                    <img src="${property.img}" alt="${property.title}" loading="lazy">
+                    <div class="property-content">
+                        <span class="property-type">${property.type}</span>
+                        <h3>${property.title}</h3>
+                        <div class="property-price">${property.price.toLocaleString()} ر.س</div>
+                        <div class="property-meta">
+                            <span>📍 ${property.city}</span>
+                            <span>📐 ${property.size}م²</span>
+                            <span>💰 ${property.status}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // دالة الفلترة والترتيب
+        function filterAndSort() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const type = document.getElementById('typeFilter').value;
+            const city = document.getElementById('cityFilter').value;
+            const sort = document.getElementById('sortFilter').value;
+
+            filteredProperties = properties.filter(property => {
+                const matchesSearch = !search || 
+                    property.title.toLowerCase().includes(search) ||
+                    property.city.toLowerCase().includes(search) ||
+                    property.type.toLowerCase().includes(search);
+                const matchesType = !type || property.type === type;
+                const matchesCity = !city || property.city === city;
+                return matchesSearch && matchesType && matchesCity;
+            });
+
+            // الترتيب
+            switch(sort) {
+                case 'السعر: صغير إلى كبير':
+                    filteredProperties.sort((a, b) => a.price - b.price);
+                    break;
+                case 'السعر: كبير إلى صغير':
+                    filteredProperties.sort((a, b) => b.price - a.price);
+                    break;
+                case 'المساحة: كبير إلى صغير':
+                    filteredProperties.sort((a, b) => b.size - a.size);
+                    break;
+                default:
+                    filteredProperties.sort((a, b) => b.id - a.id); // الأحدث
+            }
+
+            displayProperties(filteredProperties);
+        }
+
+        // إضافة Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('searchInput').addEventListener('input', filterAndSort);
+            document.getElementById('typeFilter').addEventListener('change', filterAndSort);
+            document.getElementById('cityFilter').addEventListener('change', filterAndSort);
+            document.getElementById('sortFilter').addEventListener('change', filterAndSort);
+
+            // عرض البيانات الأولية
+            displayProperties(properties);
+            
+    
+        });
+    </script>
+</body>
+</html>

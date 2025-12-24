@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - NCTU Real Estate</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+    <section class="page-wrapper">
+        <div class="main-container">
+            <div class="info-side">
+                <h1>Contact Us</h1>
+                <p>
+                    Not sure what you need? The team at NCTU will be happy
+                    to listen to you and suggest places ideas you hadn't
+                    considered.
+                </p>
+
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <i class="far fa-envelope"></i>
+                        <span>contact@nctu-realestate.com</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Sales: (+21) 123 456 586</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <div class="decoration-circles"></div>
+
+                <h3>Find your dream home</h3>
+                <h2>Get a property consultation</h2>
+
+                <form>
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your Name" />
+                        </div>
+                        <div class="input-field">
+                            <label>Property Interest</label>
+                            <select>
+                                <option>Residential</option>
+                                <option>Commercial</option>
+                                <option>Land/Plot</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-field">
+                            <label>Email</label>
+                            <div class="icon-input">
+                                <i class="far fa-envelope"></i>
+                                <input type="email" placeholder="name@email.com" />
+                            </div>
+                        </div>
+                        <div class="input-field phone-field">
+                            <label>Your phone</label>
+
+                            <div class="phone-input">
+                                <select id="countrySelect">
+                                    <option value="US">US</option>
+                                    <option value="UK">UK</option>
+                                    <option value="EG">EG</option>
+                                </select>
+
+                                <input type="tel" id="phoneInput" placeholder="+1 (555) 000-0000" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-field full-width">
+                        <label>Preferred Location</label>
+                        <input type="text" placeholder="e.g. Downtown, Suburbs..." />
+                    </div>
+
+                    <div class="input-field full-width">
+                        <br />
+                        <label>Your Message</label>
+                        <textarea rows="4" placeholder="Tell us about the property you are looking for..."></textarea>
+                    </div>
+                    <br />
+
+                    <button type="submit" class="btn-submit">
+                        Send Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        const countrySelect = document.getElementById("countrySelect");
+        const phoneInput = document.getElementById("phoneInput");
+
+        countrySelect.addEventListener("change", function () {
+            if (this.value === "US") {
+                phoneInput.placeholder = "+1 (555) 000-0000";
+            } else if (this.value === "UK") {
+                phoneInput.placeholder = "+44 7700 900000";
+            } else if (this.value === "EG") {
+                phoneInput.placeholder = "+20 10 1234 5678";
+            }
+        });
+    </script>
+</body>
+
+</html>

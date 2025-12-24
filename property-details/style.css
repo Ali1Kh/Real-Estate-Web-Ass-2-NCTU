@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+.property-page {
+  width: 80%;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+/* ===== TOP INFO ===== */
+.top-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.badge {
+  background: #7ad03a;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.address {
+  color: #666;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.top-right {
+  text-align: right;
+}
+
+.top-right h2 {
+  margin: 0;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.hero-left {
+  flex: 2;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-left img,
+.hero-right img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+/* ===== CONTENT SECTION ===== */
+.content-section {
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
+}
+
+.content-left {
+  flex: 2;
+}
+
+.content-right {
+  flex: 1;
+}
+
+/* ===== TITLES ===== */
+h3 {
+  margin-top: 10px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+/* ===== PROPERTY DETAILS ===== */
+.property-details div {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  margin-right: 350px;
+}
+
+.property-details span:first-child {
+  color: #777;
+}
+
+.property-details span:last-child {
+  font-weight: bold;
+}
+
+/* ===== LEFT IMAGES ===== */
+.content-left img {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 12px;
+}
+
+/* ===== CONTACT CARD ===== */
+.contact-card {
+  background: linear-gradient(180deg, #0b0f2f, #0a0820);
+  padding: 25px 40px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(3, 1, 110, 0.15);
+  color: #fff;
+}
+
+.agent-info {
+  display: flex;
+  gap: 14px;
+  margin-block: 10px;
+}
+
+.agent-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-block: 10px;
+}
+
+.agent-info p {
+  margin: 2px 0;
+  font-size: 13px;
+  color: #cfd3ff;
+}
+
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 6px;
+}
+
+.contact-card textarea {
+  height: 110px;
+}
+
+.contact-card button {
+  width: 50%;
+  padding: 12px;
+  background: #2c7be5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+/* ===== RELATED ===== */
+.related-card {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.related-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.related-card .price {
+  color: #2c7be5;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+.related-img {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+/* img */
+.related-img img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  margin-top: 10px;
+}
+
+/*  For sale */
+.sale-badge {
+  position: absolute;
+  top: 22px;
+  left: 12px;
+  background: #7ad03a;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}

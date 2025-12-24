@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo/logo.png" type="image/x-icon">
+    <title>Real Estate - Web Assignment 2 - NCTU</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="/assets/logo/logo.png" width="50" alt=""> Real Estate
+            </div>
+
+            <ul class="nav-links">
+                <li><a class="active" href="/">Home</a></li>
+                <li><a href="/property">Property</a></li>
+                <li><a href="/contact-us">Contact us</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="/"><i class="fa fa-user"></i> Login</a>
+                <a href="tel:2573886895"><i class="fa fa-phone"></i> (257) 388-6895</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find Your Perfect Home</h1>
+        <p>Buy, Rent, or Sell properties easily with DreamHome</p>
+        <button>View Properties</button>
+    </section>
+
+    <!-- Property Section -->
+    <section class="property-section">
+        <div class="container">
+            <h1>Discover your featured property</h1>
+            <h5 style="text-align: center;">Leo morbi faucibus mattis pharetra tellus velit ultricies duis rhoncus</h5>
+            <br>
+            <div class="grid gridContainer" data-limit="6"></div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <div class="testimonial-container">
+            <div class="testimonial-content">
+                <h2 class="testimonial-title">What our clients say about us</h2>
+
+                <div class="testimonial-quote-icon">
+                    <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0 24V11.2308L4.30769 0H10.4615L7.38462 11.0769H12.3077V24H0ZM19.6923 24V11.2308L24 0H30.1538L27.0769 11.0769H32V24H19.6923Z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+
+                <p class="testimonial-text">
+                    Arcu laoreet malesuada nunc eget. Fermentum ut dui etiam aliquam habitant elit euismod erat
+                    praesent. Tincidunt semper interdum fames cras
+                </p>
+
+                <div class="testimonial-author">
+                    <h4 class="author-name">Miya Monroe</h4>
+                    <p class="author-role">Buyer</p>
+                </div>
+            </div>
+
+            <div class="testimonial-image-wrapper">
+                <img src="./assets/images/client.jpg" alt="Miya Monroe" class="testimonial-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Commercial Property Section -->
+    <section class="property-section">
+        <div class="container">
+            <h1>Commercial property</h1>
+            <h5 style="text-align: center;">Leo morbi faucibus mattis pharetra tellus velit ultricies duis rhoncus</h5>
+            <br>
+            <div class="grid gridContainer" data-limit="3"></div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-box">
+                <h4>Opening hours</h4>
+                <p>Mon-Fri 08:00AM - 08:00PM</p>
+                <p>Sat-Sun 08:00AM - 08:00PM</p>
+            </div>
+
+            <div class="footer-box">
+                <h4>Find Us</h4>
+                <p>8911 Tanglewood Ave.</p>
+                <p>Capitol Heights, MD 20743</p>
+                <p>(566) 237-4687</p>
+                <p>moinefou@hotmail.com</p>
+            </div>
+
+            <div class="footer-box">
+                <h4>Property</h4>
+                <p>Apartments</p>
+                <p>Villas</p>
+                <p>Houses</p>
+                <p>Commercial</p>
+            </div>
+
+            <div class="footer-box">
+                <h4>Links</h4>
+                <p>Home</p>
+                <p>Property</p>
+                <p>About</p>
+                <p>Contact</p>
+            </div>
+
+            <div class="footer-box">
+                <h4>Newsletter</h4>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© Copyright Real Estate. Design by Team NCTU</p>
+            <div class="social">
+                <span>🌐</span>
+                <span>📘</span>
+                <span>📸</span>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
