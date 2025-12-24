@@ -1,0 +1,21 @@
+/* Sort & Filter */
+.sort-filter {
+  width: 70%;
+  margin: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  top: -40px;
+}
+
+.sort-filter select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
