@@ -244,8 +244,8 @@ function displayProperties(items) {
   const gridContainers = document.querySelectorAll(".gridContainer");
 
   gridContainers.forEach((gridContainer) => {
-    let limit = gridContainer.getAttribute("data-limit");
     gridContainer.innerHTML = "";
+    let limit = gridContainer.getAttribute("data-limit");
     for (let i = 0; i < limit; i++) {
       let item = items[i];
       if (!item) break;
@@ -302,7 +302,6 @@ function displayProperties(items) {
       gridContainer.appendChild(gridItem);
     }
   });
-  console.log("Displayeddd", items);
 }
 
 //  filter and sort function
@@ -337,13 +336,13 @@ function filterAndSort() {
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("typeFilter")
-    .addEventListener("change", filterAndSort);
+    ?.addEventListener("change", filterAndSort);
   document
     .getElementById("buyRentFilter")
-    .addEventListener("change", filterAndSort);
+    ?.addEventListener("change", filterAndSort);
   document
     .getElementById("sortFilter")
-    .addEventListener("change", filterAndSort);
+    ?.addEventListener("change", filterAndSort);
 
   displayProperties(items);
 });
